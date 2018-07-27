@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bckapilistener
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bckapilistener
+    spec:
+      containers:
+      - name: bckapilistener
+        image: acrsatrack.azurecr.io/backend_listener:1.1.0
+        ports:
+        - containerPort: 80
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          requests:
+            cpu: 150m
+          limits:
+            cpu: 200m		
+      imagePullSecrets:
+      - name: denkerskey
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bckapilistener
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: bckapilistener
