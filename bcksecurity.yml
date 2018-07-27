@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bcksecurity
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bcksecurity
+    spec:
+      containers:
+      - name: bcksecurity
+        image: acrsatrack.azurecr.io/backend_security:1.1.5
+        ports:
+        - containerPort: 80
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          requests:
+            cpu: 150m
+          limits:
+            cpu: 200m		
+      imagePullSecrets:
+      - name: denkerskey
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bcksecurity
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: bcksecurity
