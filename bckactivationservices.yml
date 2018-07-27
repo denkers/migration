@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bckactivationservices
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: bckactivationservices
+    spec:
+      containers:
+      - name: bckactivationservices
+        image: acrsatrack.azurecr.io/backend_activation_services:1.1.1
+        ports:
+        - containerPort: 80
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          requests:
+            cpu: 150m
+          limits:
+            cpu: 200m		
+      imagePullSecrets:
+      - name: denkerskey
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bckactivationservices
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: bckactivationservices
