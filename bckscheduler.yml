@@ -21,4 +21,4 @@ spec:
           limits:
             cpu: 200m		
       imagePullSecrets:
-      - name: denkerskey
+      - name: registrosatrack
