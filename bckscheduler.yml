@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bckscheduler
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bckscheduler
+    spec:
+      containers:
+      - name: bckscheduler
+        image: acrsatrack.azurecr.io/backend_scheduler:1.0.1    
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          requests:
+            cpu: 150m
+          limits:
+            cpu: 200m		
+      imagePullSecrets:
+      - name: denkerskey
