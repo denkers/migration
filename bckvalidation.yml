@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bckvalidation
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: bckvalidation
+    spec:
+      containers:
+      - name: bckvalidation
+        image: acrsatrack.azurecr.io/backend_validate:1.1.4
+        ports:
+        - containerPort: 80
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          requests:
+            cpu: 150m
+          limits:
+            cpu: 200m		
+      imagePullSecrets:
+      - name: registrosatrack
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bckvalidation
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: bckvalidation
