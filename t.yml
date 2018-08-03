@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: bckapilistenerkc
+  name: bckapilistener
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: bckapilistenerkc
+        app: bckapilistener
     spec:
       containers:
-      - name: bckapilistenerkc
-        image: acrsatrack.azurecr.io/backend_listener:1.2.1
+      - name: bckapilistener
+        image: acrsatrack.azurecr.io/backend_listener:1.1.0
         ports:
         - containerPort: 80
         env:
@@ -19,7 +19,7 @@ spec:
             value: prod
         resources:
           requests:
-            cpu: 40m
+            cpu: 50m
           limits:
             cpu: 100m
             memory: 350Mi
@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bckapilistenerkc
+  name: bckapilistener
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: bckapilistenerkc
+    app: bckapilistener
