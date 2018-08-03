@@ -1,0 +1,45 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: routewebui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: routewebui
+    spec:
+      containers:
+      - name: routewebui
+        image: acrsatrack.azurecr.io/deliverymanagement-webui:1376
+        ports:
+        - containerPort: 80
+        env:
+          - name: APPAPI
+            value: http://routeapi.satrack.com/deliverymanagement/route-manager/v1
+          - name: DRIVERSAPI
+            value: http://driverapi.satrack.com/driver/diver-manager-api/v1
+          - name: LOCATIONAPI
+            value: http://w2applocation.satrack.com/services/
+          - name: SATRACKAPI
+            value: http://webcloud.satrack.com/
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 150m
+            memory: 350Mi            
+      imagePullSecrets:
+      - name: registrosatrack
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: routewebui
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: routewebui
