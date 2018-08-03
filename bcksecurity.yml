@@ -19,9 +19,10 @@ spec:
             value: prod
         resources:
           requests:
-            cpu: 150m
+            cpu: 100m
           limits:
-            cpu: 200m		
+            cpu: 150m
+            memory: 400Mi
       imagePullSecrets:
       - name: registrosatrack
       
