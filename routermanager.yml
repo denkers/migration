@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: routemanager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: routemanager
+    spec:
+      containers:
+      - name: routemanager
+        image: acrsatrack.azurecr.io/deliverymanagement.route-manager:1326
+        ports:
+        - containerPort: 80
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          limits:
+            cpu: 150m             
+      imagePullSecrets:
+      - name: registrosatrack
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: routemanager
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: routemanager
