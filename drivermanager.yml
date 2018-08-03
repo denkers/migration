@@ -1,0 +1,37 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: drivermanager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: drivermanager
+    spec:
+      containers:
+      - name: drivermanager
+        image: acrsatrack.azurecr.io/driver-manager-api:1223
+        ports:
+        - containerPort: 80
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          limits:
+            cpu: 100m
+            memory: 500Mi            
+      imagePullSecrets:
+      - name: registrosatrack
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: drivermanager
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: drivermanager
