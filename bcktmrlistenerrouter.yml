@@ -15,11 +15,13 @@ spec:
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
+          - name: PROCESS_ROUTER_THREAD
+            value: '1'
         resources:
           requests:
             cpu: 50m
           limits:
             cpu: 100m
-            memory: 500Mi
+            memory: 400Mi
       imagePullSecrets:
       - name: registrosatrack
