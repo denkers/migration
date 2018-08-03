@@ -1,36 +1,26 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: routemanager
+  name: bcktmrlistenerrouter
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: routemanager
+        app: bcktmrlistenerrouter
     spec:
       containers:
-      - name: routemanager
-        image: acrsatrack.azurecr.io/deliverymanagement.route-manager:1326
-        ports:
-        - containerPort: 80
+      - name: bcktmrlistenerrouter
+        image: acrsatrack.azurecr.io/backend_listener_router:1.2.0        
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
+          - name: PROCESS_ROUTER_THREAD
+            value: '1'
         resources:
+          requests:
+            cpu: 250m
           limits:
-            cpu: 150m
+            cpu: 500m
       imagePullSecrets:
       - name: registrosatrack
-      
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: routemanager
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-  selector:
-    app: routemanager
