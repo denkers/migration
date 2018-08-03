@@ -20,5 +20,6 @@ spec:
             cpu: 150m
           limits:
             cpu: 200m
+            memory: 400Mi
       imagePullSecrets:
       - name: registrosatrack
