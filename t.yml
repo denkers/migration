@@ -16,7 +16,7 @@ spec:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
           - name: PROCESS_ROUTER_THREAD
-            value: '1'
+            value: '2'
         resources:
           requests:
             cpu: 50m
