@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bckapilistenerkc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bckapilistenerkc
+    spec:
+      containers:
+      - name: bckapilistenerkc
+        image: acrsatrack.azurecr.io/backend_listener:1.2.1
+        ports:
+        - containerPort: 80
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+        resources:
+          requests:
+            cpu: 40m
+          limits:
+            cpu: 100m
+            memory: 350Mi
+      imagePullSecrets:
+      - name: registrosatrack
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bckapilistenerkc
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: bckapilistenerkc
