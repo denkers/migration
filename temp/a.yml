@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: bckapilistener
+  name: bckapilistenerkc
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: bckapilistener
+        app: bckapilistenerkc
     spec:
       containers:
-      - name: bckapilistener
-        image: acrsatrack.azurecr.io/backend_listener:1.1.0
+      - name: bckapilistenerkc
+        image: acrsatrack.azurecr.io/backend_listener:1.2.1
         ports:
         - containerPort: 80
         env:
@@ -28,10 +28,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bckapilistener
+  name: bckapilistenerkc
+  labels:
+    run: bckapilistenerkc
+    name: bckapilistenerkc
 spec:
   type: ClusterIP
   ports:
-  - port: 30034
+  - port: 8080
   selector:
-    app: bckapilistener
+    app: bckapilistenerkc
