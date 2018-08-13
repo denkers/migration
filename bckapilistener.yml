@@ -29,8 +29,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bckapilistener
+  labels:
+    run: bckapilistener
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 80
   selector:
