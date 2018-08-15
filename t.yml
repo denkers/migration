@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: drivermanager
+  name: drivermanagertest
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: drivermanager
+        app: drivermanagertest
     spec:
       containers:
-      - name: drivermanager
-        image: acrdenkers.azurecr.io/driver-manager-api:1265
+      - name: drivermanagertest
+        image: acrsatrack.azurecr.io/driver-manager-api:1447
         ports:
         - containerPort: 80
         env:
@@ -27,10 +27,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: drivermanager
+  name: drivermanagertest
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: drivermanager
+    app: drivermanagertest
