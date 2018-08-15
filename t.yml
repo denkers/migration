@@ -16,7 +16,7 @@ spec:
         - containerPort: 80
         env:
           - name: SPRING_PROFILES_ACTIVE
-            value: dev
+            value: prod
         resources:
           limits:
             cpu: 150m         
