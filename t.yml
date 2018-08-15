@@ -32,9 +32,19 @@ metadata:
   labels:
     run: bckapilistener
 spec:
-  type: ExternalName
-  externalName: bcklistener3.satrack.com
+  type: ClusterIP
   ports:
   - port: 80
   selector:
     app: bckapilistener
+    
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+ name: bckapilistener
+subsets:
+ - addresses:
+     - ip: 10.3.128.248
+   ports:
+     - port: 80
