@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: drivermanagertest
+  name: bckapilistener
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: drivermanagertest
+        app: bckapilistener
     spec:
       containers:
-      - name: drivermanagertest
-        image: acrsatrack.azurecr.io/driver-manager-api:1447
+      - name: bckapilistener
+        image: acrsatrack.azurecr.io/backend_listener:1.1.0
         ports:
         - containerPort: 80
         env:
@@ -19,7 +19,8 @@ spec:
             value: prod
         resources:
           limits:
-            cpu: 150m         
+            cpu: 100m
+            memory: 500Mi
       imagePullSecrets:
       - name: registrosatrack
       
@@ -27,10 +28,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: drivermanagertest
+  name: bckapilistener
+  labels:
+    run: bckapilistener
 spec:
-  type: LoadBalancer
+  type: ExternalName
+  externalName: bcklistener3.satrack.com
   ports:
   - port: 80
   selector:
-    app: drivermanagertest
+    app: bckapilistener
