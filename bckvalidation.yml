@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: bckvalidation
-        image: acrsatrack.azurecr.io/backend_validate:1.1.4
+        image: acrsatrack.azurecr.io/backend_validate:1.2.0
         ports:
         - containerPort: 80
         env:
