@@ -45,6 +45,6 @@ metadata:
   name: bckapilistener
 subsets:
   - addresses:
-      - ip: 10.3.128.192
+      - ip: 10.3.128.193
     ports:
       - port: 9376
