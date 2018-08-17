@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: routemanager
-        image: acrsatrack.azurecr.io/deliverymanagement.route-manager:1326
+        image: acrsatrack.azurecr.io/deliverymanagement.route-manager:1440
         ports:
         - containerPort: 80
         env:
