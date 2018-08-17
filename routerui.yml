@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: routewebui
-        image: acrsatrack.azurecr.io/deliverymanagement-webui:1376
+        image: acrsatrack.azurecr.io/deliverymanagement-webui:1448
         ports:
         - containerPort: 80
         env:
