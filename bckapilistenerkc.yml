@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: bckapilistenerkc
-        image: acrsatrack.azurecr.io/backend_listener:1.2.1
+        image: acrsatrack.azurecr.io/middleware_listener:1588
         ports:
         - containerPort: 80
         env:
