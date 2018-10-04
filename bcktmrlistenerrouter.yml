@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: bcktmrlistenerrouter
-        image: acrsatrack.azurecr.io/backend_listener_router:1.2.0        
+        image: acrsatrack.azurecr.io/backend_listener_router:1.2.1   
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
