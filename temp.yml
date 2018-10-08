@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bcktmrlistenerrouter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bcktmrlistenerrouter
+    spec:
+      containers:
+      - name: bcktmrlistenerrouter
+        image: acrsatrack.azurecr.io/backend_listener_router:1.2.2
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod
+          - name: PROCESS_ROUTER_THREAD
+            value: '1'
+        resources:
+          requests:
+            cpu: 50m
+          limits:
+            cpu: 100m
+            memory: 100Mi
+      imagePullSecrets:
+      - name: registrosatrack
