@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: bcktmrlistenerrouter
-        image: acrsatrack.azurecr.io/backend_listener_router:1.2.2
+        image: acrsatrack.azurecr.io/backend_listener_router:1.2.3
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
@@ -22,6 +22,6 @@ spec:
             cpu: 50m
           limits:
             cpu: 100m
-            memory: 200Mi
+            memory: 300Mi
       imagePullSecrets:
       - name: registrosatrack
