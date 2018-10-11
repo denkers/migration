@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: bckscheduler
-        image: acrsatrack.azurecr.io/backend_scheduler:1.0.1    
+        image: acrsatrack.azurecr.io/backend_scheduler:1.0.2 
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
@@ -20,6 +20,6 @@ spec:
             cpu: 50m
           limits:
             cpu: 100m
-            memory: 400Mi
+            memory: 300Mi
       imagePullSecrets:
       - name: registrosatrack
