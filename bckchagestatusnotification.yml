@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: bckchagestatusnotification
-        image: acrsatrack.azurecr.io/backend_changestatus_notification:1.1.1      
+        image: acrsatrack.azurecr.io/backend_changestatus_notification:1.1.2
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
@@ -22,6 +22,6 @@ spec:
             cpu: 50m
           limits:
             cpu: 100m
-            memory: 400Mi
+            memory: 300Mi
       imagePullSecrets:
       - name: registrosatrack
