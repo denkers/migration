@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: bckactivationservices
-        image: acrsatrack.azurecr.io/backend_activation_services:1.1.1
+        image: acrsatrack.azurecr.io/backend_activation_services:1.1.2
         ports:
         - containerPort: 80
         env:
@@ -20,7 +20,7 @@ spec:
         resources:
           limits:
             cpu: 100m
-            memory: 500Mi
+            memory: 300Mi
       imagePullSecrets:
       - name: registrosatrack
       
