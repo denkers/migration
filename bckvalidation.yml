@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: bckvalidation
-        image: acrsatrack.azurecr.io/backend_validate:1.2.0
+        image: acrsatrack.azurecr.io/backend_validate:1.2.1
         ports:
         - containerPort: 80
         env:
@@ -19,10 +19,10 @@ spec:
             value: prod
         resources:
           requests:
-            cpu: 100m
+            cpu: 50m
           limits:
-            cpu: 150m
-            memory: 350Mi
+            cpu: 100m
+            memory: 300Mi
       imagePullSecrets:
       - name: registrosatrack
       
