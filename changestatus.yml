@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: changestatus
-        image: acrsatrack.azurecr.io/backend_changestatus:6003
+        image: acrsatrack.azurecr.io/backend_changestatus:6004
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: prod
