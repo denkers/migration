@@ -1,16 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: bckchangestatus
+  name: changestatus
+  namespace: backend
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: bckchangestatus
+        app: changestatus
     spec:
       containers:
-      - name: bckchangestatus
+      - name: changestatus
         image: acrsatrack.azurecr.io/backend_changestatus:1.1.2
         env:
           - name: SPRING_PROFILES_ACTIVE
