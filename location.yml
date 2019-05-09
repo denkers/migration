@@ -21,11 +21,11 @@ spec:
           value: Production    
         resources:
           requests:
-            cpu: 400m
-            memory: 128Mi
+            cpu: 320m
+            memory: 100Mi
           limits:
-            cpu: 950m
-            memory: 256Mi
+            cpu: 450m
+            memory: 200Mi
         ports:
         - containerPort: 80
       imagePullSecrets:
