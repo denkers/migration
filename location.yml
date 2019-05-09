@@ -21,10 +21,10 @@ spec:
           value: Production    
         resources:
           requests:
-            cpu: 320m
+            cpu: 200m
             memory: 100Mi
           limits:
-            cpu: 450m
+            cpu: 480m
             memory: 200Mi
         ports:
         - containerPort: 80
