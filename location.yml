@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: events-process
+  namespace: platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: events-process
+  template:
+    metadata:
+      labels:
+        app: events-process
+    spec:
+      containers:
+      - name: events-process
+        image: acrsatrack.azurecr.io/process-events:6619
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production    
+        resources:
+          requests:
+            cpu: 400m
+            memory: 128Mi
+          limits:
+            cpu: 950m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: registrosatrack 
