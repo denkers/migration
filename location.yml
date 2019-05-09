@@ -21,7 +21,7 @@ spec:
           value: Production    
         resources:
           requests:
-            cpu: 200m
+            cpu: 250m
             memory: 100Mi
           limits:
             cpu: 480m
